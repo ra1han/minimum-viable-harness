@@ -162,6 +162,54 @@ strong { color: var(--ink); }
 .card.accent-d { border-top: 5px solid var(--cranberry); }
 .card p { font-size: clamp(17px, 1.75vw, 23px); margin-top: 10px; }
 
+.slide-compact h2 { font-size: clamp(32px, 5vw, 60px); }
+.slide-compact p { font-size: clamp(16px, 1.65vw, 22px); }
+.slide-compact .stack { gap: clamp(14px, 2.1vh, 22px); }
+.compact-card-grid { gap: 12px; }
+.compact-card-grid .card {
+  min-height: 124px;
+  padding: clamp(14px, 1.6vw, 22px);
+  border-radius: 15px;
+}
+.compact-card-grid .card h3 { font-size: clamp(18px, 2.15vw, 26px); }
+.compact-card-grid .card p { font-size: clamp(14px, 1.25vw, 18px); line-height: 1.25; }
+
+.code-stack {
+  display: grid;
+  gap: 14px;
+}
+.code-panel {
+  background: color-mix(in srgb, var(--ink) 92%, var(--terracotta) 8%);
+  color: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--terracotta) 42%, transparent 58%);
+  border-radius: 16px;
+  padding: clamp(14px, 1.6vw, 22px);
+  box-shadow: 0 22px 48px rgba(36, 29, 24, 0.16);
+  overflow: hidden;
+}
+.code-panel .label { color: color-mix(in srgb, var(--surface) 72%, transparent 28%); }
+.code-panel pre {
+  margin: 10px 0 0;
+  white-space: pre-wrap;
+  font-family: var(--font-mono);
+  font-size: clamp(10px, 0.9vw, 13px);
+  line-height: 1.45;
+}
+.payload-panel pre { font-size: clamp(11px, 1vw, 14px); }
+.detail-list {
+  display: grid;
+  gap: 14px;
+}
+.detail-pill {
+  padding: 16px 18px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent 12%);
+  border: 1px solid var(--border-strong);
+  border-left: 6px solid var(--terracotta);
+  border-radius: 15px;
+}
+.detail-pill:nth-child(2) { border-left-color: var(--ochre); }
+.detail-pill p { font-size: clamp(14px, 1.25vw, 18px); line-height: 1.26; }
+
 .big-number {
   font-family: var(--font-mono);
   font-size: clamp(108px, 23vw, 270px);
@@ -518,9 +566,9 @@ strong { color: var(--ink); }
 .primitive-diagram {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(18px, 4vw, 56px);
-  padding: clamp(24px, 4vw, 42px);
-  min-height: clamp(330px, 40vw, 470px);
+  gap: clamp(14px, 2.8vw, 38px);
+  padding: clamp(18px, 3vw, 30px);
+  min-height: clamp(280px, 34vw, 390px);
   align-items: center;
   background:
     radial-gradient(circle at 16% 18%, var(--terracotta-dim), transparent 24%),
@@ -535,42 +583,45 @@ strong { color: var(--ink); }
   display: grid;
   justify-items: center;
   align-content: start;
-  gap: 14px;
+  gap: 10px;
   text-align: center;
   color: var(--ink);
 }
 .primitive svg {
-  width: min(19vw, 168px);
-  height: min(19vw, 168px);
+  width: min(15vw, 132px);
+  height: min(15vw, 132px);
   filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.28));
 }
 .primitive h3 {
-  font-size: clamp(22px, 3vw, 38px);
+  font-size: clamp(20px, 2.5vw, 32px);
   line-height: 0.95;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 .primitive p {
-  max-width: 14ch;
+  max-width: 24ch;
   color: var(--ink-dim);
-  font-size: clamp(17px, 1.8vw, 24px);
-  line-height: 1.12;
+  font-size: clamp(14px, 1.25vw, 18px);
+  line-height: 1.18;
 }
 .primitive .sensor-sweep {
   transform-origin: 64px 64px;
   animation: sensorSweep 4.8s linear infinite;
 }
-.primitive .feedback-arrow {
-  transform-origin: 64px 64px;
-  animation: feedbackTurn 5.8s linear infinite;
+.primitive .pressure-needle {
+  transform-origin: 64px 72px;
+  animation: pressureResonate 620ms ease-in-out infinite alternate;
 }
 
 @keyframes sensorSweep {
   to { transform: rotate(360deg); }
 }
 
-@keyframes feedbackTurn {
-  to { transform: rotate(360deg); }
+@keyframes pressureResonate {
+  0% { transform: rotate(-7deg); }
+  45% { transform: rotate(4deg); }
+  72% { transform: rotate(-3deg); }
+  100% { transform: rotate(8deg); }
 }
 
 .loop {
@@ -614,6 +665,16 @@ strong { color: var(--ink); }
 .loop-item.two { top: 43%; right: 0; }
 .loop-item.three { bottom: 5%; left: 50%; transform: translateX(-50%); }
 .loop-item.four { top: 43%; left: 0; }
+
+.compact-loop .loop { width: min(58vw, 560px); }
+.compact-loop .loop-center { inset: 32%; padding: 16px; }
+.compact-loop .loop-center h3 { font-size: clamp(16px, 1.7vw, 22px); }
+.compact-loop .loop-item {
+  width: min(24vw, 175px);
+  padding: 11px;
+  border-radius: 15px;
+}
+.compact-loop .loop-item p { font-size: clamp(12px, 1.05vw, 15px); line-height: 1.18; }
 
 .quote {
   font-size: clamp(30px, 4.8vw, 58px);
@@ -798,9 +859,17 @@ body.is-presenting .deck-controls { top: 18px; }
   .slide { padding: 118px 24px 96px; }
   .slide::before { inset: 10px; border-radius: 18px; }
   .grid-two { grid-template-columns: 1fr; gap: 28px; }
-  .card-grid, .primitive-diagram { grid-template-columns: 1fr; }
-  .primitive-diagram { min-height: auto; }
-  .primitive svg { width: min(48vw, 142px); height: min(48vw, 142px); }
+  .card-grid { grid-template-columns: 1fr; }
+  .primitive-diagram {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding: 12px;
+    min-height: auto;
+  }
+  .primitive { gap: 7px; }
+  .primitive svg { width: min(22vw, 86px); height: min(22vw, 86px); }
+  .primitive h3 { font-size: clamp(13px, 3.8vw, 17px); }
+  .primitive p { max-width: 18ch; font-size: clamp(10px, 2.7vw, 12px); line-height: 1.12; }
   .layer:nth-child(n) { transform: none; }
   .traditional-stack {
     min-height: 300px;
@@ -834,6 +903,7 @@ body.is-presenting .deck-controls { top: 18px; }
   .challenge-board { grid-template-columns: 1fr; }
   .challenge-card { min-height: auto; }
   .challenge-card img { height: 210px; }
+  .code-panel pre { font-size: 10px; }
   .question-grid { grid-template-columns: 1fr; }
   .question-card { min-height: 140px; }
   .deck-dots { display: none; }
@@ -871,7 +941,7 @@ body.is-presenting .deck-controls { top: 18px; }
   <button class="control-button control-button--primary" id="presentDeck" type="button" aria-label="Enter presentation mode">Present</button>
   <button class="control-button" id="nextSlide" type="button" aria-label="Go to next slide">Next</button>
 </div>
-<div class="deck-counter" aria-live="polite">01 / 10</div>
+<div class="deck-counter" aria-live="polite">01 / 12</div>
 <div class="deck-hints">Use controls, arrow keys, wheel, or swipe. Press F for presentation mode.</div>
 
 <main class="deck" id="deck">
@@ -1012,19 +1082,31 @@ body.is-presenting .deck-controls { top: 18px; }
           <p>Strict, conditional rule/policy that defines when a check must happen.</p>
         </article>
         <article class="primitive">
-          <svg viewBox="0 0 128 128" role="img" aria-label="Feedback loop icon">
+          <svg viewBox="0 0 128 128" role="img" aria-label="Resonating pressure gauge icon">
             <defs>
-              <linearGradient id="feedbackGlow" x1="30" y1="26" x2="99" y2="103" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#45e0ba"/>
-                <stop offset="1" stop-color="#27b986"/>
+              <linearGradient id="gaugeRim" x1="24" y1="18" x2="105" y2="112" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f4e8d7"/>
+                <stop offset="0.48" stop-color="#b57614"/>
+                <stop offset="1" stop-color="#5d7f52"/>
+              </linearGradient>
+              <linearGradient id="gaugeNeedle" x1="50" y1="40" x2="83" y2="87" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f08a63"/>
+                <stop offset="1" stop-color="#9f2d48"/>
               </linearGradient>
             </defs>
-            <g class="feedback-arrow" fill="none" stroke="url(#feedbackGlow)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M32 59A33 33 0 0 1 87 33"/>
-              <path d="M85 23L90 42L70 39" fill="none"/>
-              <path d="M96 69A33 33 0 0 1 41 95"/>
-              <path d="M43 105L38 86L58 89" fill="none"/>
+            <circle cx="64" cy="70" r="47" fill="color-mix(in srgb, var(--surface) 76%, var(--sage) 24%)" stroke="url(#gaugeRim)" stroke-width="7"/>
+            <circle cx="64" cy="70" r="36" fill="color-mix(in srgb, var(--surface) 88%, transparent 12%)" stroke="rgba(36, 29, 24, 0.18)" stroke-width="2"/>
+            <path d="M33 77A32 32 0 0 1 95 77" fill="none" stroke="#b57614" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
+            <path d="M88 47A32 32 0 0 1 96 73" fill="none" stroke="#9f2d48" stroke-width="5" stroke-linecap="round"/>
+            <path d="M35 70H27M42 49L36 43M64 40V31M86 49L92 43M93 70H101" stroke="var(--ink-dim)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M42 90L36 96M86 90L92 96" stroke="var(--ink-dim)" stroke-width="2" stroke-linecap="round" opacity="0.58"/>
+            <g class="pressure-needle">
+              <path d="M64 72L87 48" stroke="url(#gaugeNeedle)" stroke-width="6" stroke-linecap="round"/>
+              <path d="M64 72L55 86" stroke="url(#gaugeNeedle)" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
             </g>
+            <circle cx="64" cy="72" r="8" fill="var(--surface)" stroke="#b84e2d" stroke-width="4"/>
+            <path d="M47 21H81" stroke="#6f6259" stroke-width="6" stroke-linecap="round"/>
+            <rect x="55" y="14" width="18" height="12" rx="4" fill="#6f6259"/>
           </svg>
           <h3>Backpressure</h3>
           <p>The friction - blocking progress until the condition is met.</p>
@@ -1033,23 +1115,83 @@ body.is-presenting .deck-controls { top: 18px; }
     </div>
   </section>
 
-  <section class="slide">
+  <section class="slide slide-compact">
     <div class="grid-two">
       <div class="stack">
-        <div class="kicker reveal">Building blocks</div>
-        <h2 class="reveal">The harness is an onboarding packet that can execute.</h2>
-        <p class="reveal">A good new engineer needs docs, scripts, context, and a way to know when the work is correct. So does an agent.</p>
+        <div class="kicker reveal">Real-world scenario</div>
+        <h2 class="reveal">A tiny schema change can still break production.</h2>
+        <p class="reveal">The task: add a new <strong>phone_number</strong> column to an existing PostgreSQL database and expose it through a FastAPI backend.</p>
+        <p class="reveal">The mistake: the agent updates the database files, but forgets a default value for existing rows.</p>
       </div>
-      <div class="card-grid">
-        <article class="card accent-a reveal"><div class="label">Boot</div><h3>Setup commands</h3><p>Dependencies, environment, database, and local services.</p></article>
-        <article class="card accent-b reveal"><div class="label">Run</div><h3>Happy path</h3><p>The shortest route to start the app in a known-good state.</p></article>
-        <article class="card accent-c reveal"><div class="label">Verify</div><h3>Proof loop</h3><p>Tests, type checks, screenshots, logs, or manual smoke paths.</p></article>
-        <article class="card accent-d reveal"><div class="label">Remember</div><h3>Session learning</h3><p>Capture the thing that would save the next agent five minutes.</p></article>
+      <div class="card-grid compact-card-grid">
+        <article class="card accent-a reveal"><div class="label">Gate</div><h3>Commit attempt</h3><p>A lifecycle rule intercepts the agent before the risky change can move forward.</p></article>
+        <article class="card accent-b reveal"><div class="label">Sensor</div><h3>Migration dry-run</h3><p><strong>alembic check</strong> proves whether existing rows can survive the schema change.</p></article>
+        <article class="card accent-c reveal"><div class="label">Backpressure</div><h3>Hard stop</h3><p>The failed check aborts the action and pushes the exact error into the next context window.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="slide">
+  <section class="slide slide-compact">
+    <div class="grid-two">
+      <div class="stack">
+        <div class="kicker reveal">Gate + Sensor</div>
+        <h2 class="reveal">Policy calls proof before the agent can proceed.</h2>
+        <p class="reveal">The gate does not decide whether the migration is safe. It decides when the proof must run.</p>
+        <p class="reveal">The sensor gathers objective evidence from the repo: migration health first, backend compilation second.</p>
+      </div>
+      <div class="code-stack reveal">
+        <article class="code-panel">
+          <div class="label">.claude/settings.json</div>
+          <pre>{
+  "hooks": {
+    "PreToolUse": [{
+      "if": "Bash(git commit*)",
+      "run": "./scripts/harness-proof-gate.sh"
+    }]
+  }
+}</pre>
+        </article>
+        <article class="code-panel">
+          <div class="label">harness-proof-gate.sh</div>
+          <pre>python -m alembic check
+if [ $? -ne 0 ]; then
+  echo "INVARIANT_VIOLATION: DATABASE_MIGRATION_FAILED"
+  echo "Detail: missing nullable/default definition."
+  exit 2
+fi
+
+pytest tests/test_backend.py</pre>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-compact">
+    <div class="grid-two">
+      <div class="stack">
+        <div class="kicker reveal">Backpressure</div>
+        <h2 class="reveal">The failure becomes the next instruction.</h2>
+        <div class="detail-list reveal">
+          <article class="detail-pill"><p><strong>Execution brake:</strong> the pending commit is killed before the unsafe migration moves forward.</p></article>
+          <article class="detail-pill"><p><strong>Token funnel:</strong> the sensor output is injected into the agent's next context window.</p></article>
+        </div>
+      </div>
+      <article class="code-panel payload-panel reveal">
+        <div class="label">Injected context</div>
+        <pre>[System Message from PreToolUse Gate]
+Tool 'git commit' aborted due to script failure (exit code 2).
+
+Error Category:
+INVARIANT_VIOLATION: DATABASE_MIGRATION_FAILED
+
+Detail: Your migration file is missing a nullable/default definition.
+
+Fix the code syntax to clear the gate before retrying.</pre>
+      </article>
+    </div>
+  </section>
+
+  <section class="slide slide-compact compact-loop">
     <div class="grid-two">
       <div class="stack">
         <div class="kicker reveal">Self-improving feedback loop</div>
@@ -1062,7 +1204,7 @@ body.is-presenting .deck-controls { top: 18px; }
         <article class="loop-item one"><div class="label">Observe</div><p>Where did the agent stall or guess?</p></article>
         <article class="loop-item two"><div class="label">Capture</div><p>Turn the lesson into memory, docs, checks, or scripts.</p></article>
         <article class="loop-item three"><div class="label">Reuse</div><p>The next session starts with the lesson available.</p></article>
-        <article class="loop-item four"><div class="label">Verify</div><p>Confirm the loop really got shorter.</p></article>
+        <article class="loop-item four"><div class="label">Fix</div><p><strong>Repair with proof:</strong> add a nullable/default definition, rerun the gate, then continue only after evidence passes.</p></article>
       </div>
     </div>
   </section>
@@ -1094,6 +1236,8 @@ let presentationMode = false;
 let hintTimer = window.setTimeout(() => hints.classList.add('faded'), 4200);
 
 slides.forEach((slide, index) => {
+  slide.id = slide.id || `slide-${String(index + 1).padStart(2, '0')}`;
+
   const dot = document.createElement('button');
   dot.className = 'deck-dot';
   dot.type = 'button';
@@ -1110,6 +1254,21 @@ slides.forEach((slide, index) => {
 
 const dotButtons = Array.from(document.querySelectorAll('.deck-dot'));
 
+function getSlideIndexFromHash(hash = window.location.hash) {
+  const id = decodeURIComponent(hash.replace(/^#/, ''));
+  if (!id) return -1;
+  return slides.findIndex(slide => slide.id === id);
+}
+
+function syncHash(index, replace = true) {
+  const slide = slides[Math.max(0, Math.min(slides.length - 1, index))];
+  if (!slide || window.location.hash === `#${slide.id}`) return;
+  const url = new URL(window.location.href);
+  url.hash = slide.id;
+  const method = replace ? 'replaceState' : 'pushState';
+  window.history[method](null, '', url);
+}
+
 function setActive(index) {
   active = Math.max(0, Math.min(slides.length - 1, index));
   slides.forEach((slide, slideIndex) => slide.classList.toggle('visible', Math.abs(slideIndex - active) <= 1));
@@ -1120,10 +1279,12 @@ function setActive(index) {
   firstButton.disabled = active === 0;
   prevButton.disabled = active === 0;
   nextButton.disabled = active === slides.length - 1;
+  syncHash(active);
 }
 
-function goTo(index) {
+function goTo(index, updateHistory = true) {
   slides[Math.max(0, Math.min(slides.length - 1, index))].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (updateHistory) syncHash(index, false);
   fadeHints();
 }
 
@@ -1161,11 +1322,22 @@ nextButton.addEventListener('click', () => goTo(active + 1));
 presentButton.addEventListener('click', togglePresentation);
 slidePicker.addEventListener('change', (event) => goTo(Number(event.target.value)));
 
+window.addEventListener('hashchange', () => {
+  const index = getSlideIndexFromHash();
+  if (index >= 0) goTo(index, false);
+});
+
 document.addEventListener('fullscreenchange', () => {
   if (!document.fullscreenElement && presentationMode) {
     setPresentationMode(false);
   }
 });
+
+const initialSlideIndex = getSlideIndexFromHash();
+setActive(initialSlideIndex >= 0 ? initialSlideIndex : 0);
+if (initialSlideIndex >= 0) {
+  deck.scrollTop = slides[initialSlideIndex].offsetTop;
+}
 
 const observer = new IntersectionObserver((entries) => {
   const visible = entries
@@ -1174,7 +1346,6 @@ const observer = new IntersectionObserver((entries) => {
   if (visible) setActive(slides.indexOf(visible.target));
 }, { root: deck, threshold: [0.5, 0.75] });
 slides.forEach(slide => observer.observe(slide));
-setActive(0);
 
 window.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ') {

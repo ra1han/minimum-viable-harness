@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="0; url=./talks/introduction-deck.html">
+<title>Minimum Viable Harness</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #fbf5eb;
+  --ink: #241d18;
+  --accent: #b84e2d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #181410;
+    --ink: #f7efe4;
+    --accent: #f08a63;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Verdana, sans-serif;
+}
+main {
+  max-width: 640px;
+  display: grid;
+  gap: 16px;
+}
+h1 { margin: 0; font-size: clamp(36px, 8vw, 72px); line-height: 0.95; }
+p { margin: 0; font-size: 18px; line-height: 1.45; }
+a { color: var(--accent); font-weight: 700; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Minimum Viable Harness</h1>
+  <p>Opening the introduction deck...</p>
+  <p><a href="./talks/introduction-deck.html">Open the deck</a></p>
+</main>
+<script>
+window.location.replace('./talks/introduction-deck.html');
+</script>
+</body>
+</html>

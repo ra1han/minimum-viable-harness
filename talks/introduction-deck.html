@@ -876,7 +876,7 @@ body.is-presenting .deck-controls { top: 18px; }
       <div class="layer-slab-stack reveal" aria-label="Three layered system diagram: developer, LLM inference, and codebase layers">
         <article class="slab-layer one"><div class="label">01</div><h3>Human Layer</h3><div class="agent-chip">Developers</div></article>
         <article class="slab-layer two"><div class="label">02</div><h3>INFERENCE Layer</h3><div class="agent-chip">Chatbots, Auto-complete</div></article>
-        <article class="slab-layer three"><div class="label">03</div><h3>Codebase Layer</h3><div class="agent-chip">Repositories</div></article>
+        <article class="slab-layer three"><div class="label">03</div><h3>Codebase Layer</h3><div class="agent-chip">Code, Scripts, Tests, Pipelines</div></article>
       </div>
     </div>
   </section>
@@ -892,7 +892,7 @@ body.is-presenting .deck-controls { top: 18px; }
         <article class="slab-layer one"><div class="label">01</div><h3>Human Layer</h3><div class="agent-chip">Developers</div></article>
         <article class="slab-layer two"><div class="label">02</div><h3>INFERENCE Layer</h3><div class="agent-chip">LLM Harness (Copilot, Claude)</div></article>
         <div class="agents-sidecar" aria-label="Agents box aligned with the agentic LLM layer">Agents</div>
-        <article class="slab-layer three"><div class="label">03</div><h3>Codebase Layer</h3><div class="agent-chip">Repositories</div></article>
+        <article class="slab-layer three"><div class="label">03</div><h3>Codebase Layer</h3><div class="agent-chip">Code, Scripts, Tests, Pipelines</div></article>
       </div>
     </div>
   </section>
@@ -902,9 +902,9 @@ body.is-presenting .deck-controls { top: 18px; }
       <div class="kicker reveal">Sound familiar?</div>
       <h2 class="reveal" style="max-width: 17ch;">More agency ≠ more productivity</h2>
       <div class="challenge-board reveal">
-        <article class="challenge-card"><div class="label">Long Running Loop</div><img src="../images/meme_wait.jpg" alt="Waiting meme"><h3>Takes too long to close the loop</h3><p><i>"Add a new column for address"</i> - and it's looping for straight 13 minutes.</p></article>
+        <article class="challenge-card"><div class="label">Long Running Loop</div><img src="../images/meme_wait.jpg" alt="Waiting meme"><h3>Takes too long to close the loop</h3><p><i>Add a new column for address</i> - and it's looping for straight 13 minutes.</p></article>
         <article class="challenge-card"><div class="label">Dichotomy of tool selection</div><img src="../images/meme_judge.png" alt="Judge meme"><h3>Random tool calls</h3><p>The agent explores because the next useful move is not encoded.</p></article>
-        <article class="challenge-card"><div class="label">False Positives</div><img src="../images/meme_notdone.png" alt="Not done meme"><h3>Done doesn't mean done</h3><p>The chat says complete, you click the button and it's broken.</p></article>
+        <article class="challenge-card"><div class="label">False Positives</div><img src="../images/meme_notdone.png" alt="Not done meme"><h3>Done doesn't mean done</h3><p>The chat says complete, you click the button and it's broken. <i>Did you even try to run it?</i></p></article>
         <article class="challenge-card"><div class="label">Onboarding during every session</div><img src="../images/meme_amnesia.png" alt="Amnesia meme"><h3>Amnesia across sessions</h3><p>Useful discoveries vanish with the session.</p></article>
       </div>
     </div>
@@ -912,8 +912,8 @@ body.is-presenting .deck-controls { top: 18px; }
 
   <section class="slide">
     <div class="stack">
-      <div class="kicker reveal">Quick Mental Exercise</div>
-      <h2 class="reveal" style="max-width: 12ch;">Cold-start your app with an agent.</h2>
+      <div class="kicker reveal">Quick Pause - A Mental Exercise</div>
+      <h2 class="reveal" style="max-width: 12ch;">Cold-start your app with an agent</h2>
       <p class="reveal" style="max-width: 680px;">Ask Copilot, Claude, or Codex to launch it locally - no extra instructions.</p>
       <div class="question-grid reveal">
         <article class="question-card"><div class="label">Question 1</div><p>Will it succeed from existing repo alone?</p></article>
@@ -926,23 +926,25 @@ body.is-presenting .deck-controls { top: 18px; }
 
   <section class="slide">
     <div class="grid-two">
-      <div class="stack tight">
-        <div class="kicker reveal">What is what?</div>
-        <h2 class="reveal">The harness wraps the model so agents can act.</h2>
-        <p class="reveal">The model is not the whole engineering system. The harness gives it context, tools, instructions, and verification paths.</p>
+      <div class="stack">
+        <div class="kicker reveal">The Engineering Harness</div>
+        <h2 class="reveal">Let Agents move fast, but only with proof</h2>
+        <p class="reveal">Adding deterministic capabilities to the Inference layer by encoding the path from intent to proof.</p>
       </div>
-      <div class="layered-model">
-        <article class="layer reveal"><h3>Engineering Harness <span>outer system</span></h3><p>Repository norms, setup paths, checks, memory, and operating rules.</p></article>
-        <article class="layer reveal"><h3>Harness <span>runtime shell</span></h3><p>Copilot, Claude, or another agent host coordinating tools and context.</p></article>
-        <article class="layer reveal"><h3>LLM to Agents <span>execution</span></h3><p>The model reasons; the agent uses tools to change and verify reality.</p></article>
+      <div class="layer-slab-stack agentic reveal" aria-label="Three separated layers: developer, agentic LLM, and codebase">
+        <article class="slab-layer one"><div class="label">01</div><h3>Human Layer</h3><div class="agent-chip">Developers</div></article>
+        <article class="slab-layer two"><div class="label">02</div><h3>INFERENCE Layer</h3><div class="agent-chip">LLM Harness (Copilot, Claude)</div></article>
+        <div class="agents-sidecar" aria-label="Agents box aligned with the agentic LLM layer">Agents</div>
+        <article class="slab-layer three"><div class="label">03</div><h3>Engineering Harness Layer</h3><div class="agent-chip">Sensor, Gate, Backpressure</div></article>
+        <article class="slab-layer four"><div class="label">04</div><h3>Codebase Layer</h3><div class="agent-chip">Code, Scripts, Tests, Pipelines</div></article>
       </div>
     </div>
   </section>
 
   <section class="slide">
     <div class="stack">
-      <div class="kicker reveal">Minimum viable harness</div>
-      <h2 class="reveal">Encode the path from intent to proof.</h2>
+      <div class="kicker reveal">The core primitives</div>
+      <h2 class="reveal">Sensor, Gate and Backpressure</h2>
       <div class="timeline reveal">
         <article class="step"><div class="dot">1</div><h3>Instructions</h3><p>Tell the agent how this repo works, what matters, and what never to guess.</p></article>
         <article class="step"><div class="dot">2</div><h3>Tools</h3><p>Expose the actions that can inspect, edit, run, and verify the system.</p></article>

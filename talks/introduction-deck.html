@@ -515,46 +515,63 @@ strong { color: var(--ink); }
 .challenge-card:nth-child(3) { border-top: 5px solid var(--cranberry); }
 .challenge-card:nth-child(4) { border-top: 5px solid var(--sage); }
 
-.timeline {
+.primitive-diagram {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  position: relative;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 7%;
-  right: 7%;
-  top: 50%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--terracotta), var(--ochre), var(--sage));
-  transform: translateY(-50%);
-  z-index: -1;
-}
-.step {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 22px;
-  min-height: 205px;
-  display: grid;
-  align-content: start;
-  gap: 12px;
-}
-.step .dot {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--terracotta-dim);
-  color: var(--terracotta);
-  font-family: var(--font-mono);
-  font-size: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 4vw, 56px);
+  padding: clamp(24px, 4vw, 42px);
+  min-height: clamp(330px, 40vw, 470px);
+  align-items: center;
+  background:
+    radial-gradient(circle at 16% 18%, var(--terracotta-dim), transparent 24%),
+    radial-gradient(circle at 86% 16%, var(--sage-dim), transparent 22%),
+    linear-gradient(145deg, color-mix(in srgb, var(--surface) 92%, var(--ochre) 8%), color-mix(in srgb, var(--surface) 94%, var(--sage) 6%));
   border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(36, 29, 24, 0.1);
 }
-.step p { font-size: clamp(16px, 1.55vw, 21px); }
+.primitive {
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 14px;
+  text-align: center;
+  color: var(--ink);
+}
+.primitive svg {
+  width: min(19vw, 168px);
+  height: min(19vw, 168px);
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.28));
+}
+.primitive h3 {
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.primitive p {
+  max-width: 14ch;
+  color: var(--ink-dim);
+  font-size: clamp(17px, 1.8vw, 24px);
+  line-height: 1.12;
+}
+.primitive .sensor-sweep {
+  transform-origin: 64px 64px;
+  animation: sensorSweep 4.8s linear infinite;
+}
+.primitive .feedback-arrow {
+  transform-origin: 64px 64px;
+  animation: feedbackTurn 5.8s linear infinite;
+}
+
+@keyframes sensorSweep {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes feedbackTurn {
+  to { transform: rotate(360deg); }
+}
 
 .loop {
   width: min(76vw, 780px);
@@ -781,8 +798,9 @@ body.is-presenting .deck-controls { top: 18px; }
   .slide { padding: 118px 24px 96px; }
   .slide::before { inset: 10px; border-radius: 18px; }
   .grid-two { grid-template-columns: 1fr; gap: 28px; }
-  .card-grid, .timeline { grid-template-columns: 1fr; }
-  .timeline::before { display: none; }
+  .card-grid, .primitive-diagram { grid-template-columns: 1fr; }
+  .primitive-diagram { min-height: auto; }
+  .primitive svg { width: min(48vw, 142px); height: min(48vw, 142px); }
   .layer:nth-child(n) { transform: none; }
   .traditional-stack {
     min-height: 300px;
@@ -945,11 +963,72 @@ body.is-presenting .deck-controls { top: 18px; }
     <div class="stack">
       <div class="kicker reveal">The core primitives</div>
       <h2 class="reveal">Sensor, Gate and Backpressure</h2>
-      <div class="timeline reveal">
-        <article class="step"><div class="dot">1</div><h3>Instructions</h3><p>Tell the agent how this repo works, what matters, and what never to guess.</p></article>
-        <article class="step"><div class="dot">2</div><h3>Tools</h3><p>Expose the actions that can inspect, edit, run, and verify the system.</p></article>
-        <article class="step"><div class="dot">3</div><h3>Skills</h3><p>Package recurring workflows so the agent uses the right process under pressure.</p></article>
-        <article class="step"><div class="dot">4</div><h3>Checks</h3><p>Boot the app end to end and prove the change before saying done.</p></article>
+      <div class="primitive-diagram reveal" aria-label="Sensors, gates, and feedback diagram">
+        <article class="primitive">
+          <svg viewBox="0 0 128 128" role="img" aria-label="Radar sensor icon">
+            <defs>
+              <linearGradient id="sensorGlow" x1="24" y1="18" x2="98" y2="108" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#66d8ff"/>
+                <stop offset="1" stop-color="#195a96"/>
+              </linearGradient>
+            </defs>
+            <circle cx="64" cy="64" r="50" fill="rgba(29, 85, 139, 0.28)" stroke="url(#sensorGlow)" stroke-width="2"/>
+            <circle cx="64" cy="64" r="34" fill="none" stroke="rgba(105, 211, 255, 0.42)" stroke-width="1.5"/>
+            <circle cx="64" cy="64" r="17" fill="none" stroke="rgba(105, 211, 255, 0.58)" stroke-width="1.5"/>
+            <path class="sensor-sweep" d="M64 64 L64 18 A46 46 0 0 1 92 28 Z" fill="rgba(80, 202, 255, 0.16)"/>
+            <path d="M64 64 L64 31" stroke="#35c8ff" stroke-width="3" stroke-linecap="round"/>
+            <path d="M64 22 L57 33 H71 Z" fill="#35c8ff"/>
+            <circle cx="64" cy="64" r="7" fill="#071b32" stroke="#35c8ff" stroke-width="3"/>
+            <path d="M31 64H22M106 64H97M64 31V22M64 106V97" stroke="rgba(105, 211, 255, 0.46)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <h3>Sensors</h3>
+          <p>System's eyes and ears, providing deterministic and objective evidence.</p>
+        </article>
+        <article class="primitive">
+          <svg viewBox="0 0 172 128" role="img" aria-label="Pipe valve gate icon">
+            <defs>
+              <linearGradient id="pipeMetal" x1="20" y1="36" x2="150" y2="92" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#d7c7aa"/>
+                <stop offset="0.48" stop-color="#9c8460"/>
+                <stop offset="1" stop-color="#6c573d"/>
+              </linearGradient>
+              <linearGradient id="valveAccent" x1="52" y1="20" x2="118" y2="102" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f0b45a"/>
+                <stop offset="1" stop-color="#b84e2d"/>
+              </linearGradient>
+            </defs>
+            <rect x="16" y="56" width="140" height="22" rx="11" fill="url(#pipeMetal)" stroke="#5f4933" stroke-width="3"/>
+            <rect x="18" y="50" width="16" height="34" rx="4" fill="#786044" stroke="#4e3c2b" stroke-width="2"/>
+            <rect x="138" y="50" width="16" height="34" rx="4" fill="#786044" stroke="#4e3c2b" stroke-width="2"/>
+            <path d="M29 57V77M143 57V77" stroke="#d9c8a9" stroke-width="2" opacity="0.72"/>
+            <rect x="73" y="39" width="26" height="56" rx="6" fill="#6f573b" stroke="#4e3c2b" stroke-width="3"/>
+            <rect x="80" y="28" width="12" height="24" rx="4" fill="#6f573b" stroke="#4e3c2b" stroke-width="2"/>
+            <circle cx="86" cy="28" r="24" fill="none" stroke="url(#valveAccent)" stroke-width="8"/>
+            <path d="M86 4V52M62 28H110M69 11L103 45M103 11L69 45" stroke="url(#valveAccent)" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="86" cy="28" r="7" fill="#f4e8d7" stroke="#b84e2d" stroke-width="3"/>
+            <path d="M53 67H73M99 67H119" stroke="#f4e8d7" stroke-width="3" stroke-linecap="round" opacity="0.58"/>
+          </svg>
+          <h3>Gates</h3>
+          <p>Strict, conditional rule/policy that defines when a check must happen.</p>
+        </article>
+        <article class="primitive">
+          <svg viewBox="0 0 128 128" role="img" aria-label="Feedback loop icon">
+            <defs>
+              <linearGradient id="feedbackGlow" x1="30" y1="26" x2="99" y2="103" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#45e0ba"/>
+                <stop offset="1" stop-color="#27b986"/>
+              </linearGradient>
+            </defs>
+            <g class="feedback-arrow" fill="none" stroke="url(#feedbackGlow)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M32 59A33 33 0 0 1 87 33"/>
+              <path d="M85 23L90 42L70 39" fill="none"/>
+              <path d="M96 69A33 33 0 0 1 41 95"/>
+              <path d="M43 105L38 86L58 89" fill="none"/>
+            </g>
+          </svg>
+          <h3>Backpressure</h3>
+          <p>The friction - blocking progress until the condition is met.</p>
+        </article>
       </div>
     </div>
   </section>

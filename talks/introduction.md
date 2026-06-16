@@ -247,3 +247,18 @@ This project enforces strict execution gates on commits. If you break these, the
 # Self-improving Feedback Loop
 
 After each session, there should be a feedback loop to capture what could have been done to improve the harness.
+
+# Complexity is spread everywhere
+
+The previous state is chaotic: setup scripts, environment files, migrations, seed data, tests, UI checks, infrastructure, and documentation all live in different places.
+
+A good harness abstracts that spread and gives the agent simple interfaces to interact with the system:
+
+- `boot`
+- `seed-db`
+- `verify-api`
+- `verify-ui`
+- `reset`
+- `proof`
+
+The agent should work through intent-level handles while the harness owns setup, state, services, and proof.

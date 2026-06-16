@@ -396,6 +396,10 @@ strong { color: var(--ink); }
   isolation: isolate;
   perspective: none;
 }
+.slide-diagram-left .layer-slab-stack {
+  justify-self: start;
+  width: min(100%, 620px);
+}
 .layer-slab-stack::before {
   content: '';
   position: absolute;
@@ -461,9 +465,17 @@ strong { color: var(--ink); }
 .slab-layer.three { --slab-accent: #159464; z-index: 1; top: calc(var(--slab-top) + var(--slab-step) * 2); }
 .slab-layer.four { --slab-accent: #7b8791; z-index: 0; top: calc(var(--slab-top) + var(--slab-step) * 3); }
 
+.slide-starting-point .slab-layer {
+  left: 0;
+  right: 40%;
+}
+
 .layer-slab-stack.agentic {
   --slab-top: 70px;
   min-height: clamp(450px, 56vw, 660px);
+}
+.slide-agentic-intro .layer-slab-stack.agentic {
+  transform: translateY(65px);
 }
 .layer-slab-stack.agentic::before {
   left: 1%;
@@ -897,6 +909,7 @@ body.is-presenting .deck-controls { top: 18px; }
   .slab-layer h3 { right: 7%; font-size: clamp(10px, 2.8vw, 13px); }
   .slab-layer .label { left: 13%; bottom: 14px; font-size: 10px; }
   .layer-slab-stack.agentic { --slab-top: 62px; min-height: 470px; }
+  .slide-agentic-intro .layer-slab-stack.agentic { transform: translateY(14px); }
   .layer-slab-stack.agentic .slab-layer { left: -8%; right: 40%; height: 116px; min-height: 0; }
   .agent-chip { right: 7%; bottom: 16px; font-size: 9px; }
   .agents-sidecar { left: 77%; top: 31%; width: 84px; min-height: 56px; font-size: 10px; }
@@ -954,7 +967,7 @@ body.is-presenting .deck-controls { top: 18px; }
     <div class="big-number">01</div>
   </section>
 
-  <section class="slide">
+  <section class="slide slide-diagram-left slide-starting-point">
     <div class="grid-two">
       <div class="stack">
         <div class="kicker reveal">Developer -> Model -> Codebase</div>
@@ -969,7 +982,7 @@ body.is-presenting .deck-controls { top: 18px; }
     </div>
   </section>
 
-  <section class="slide">
+  <section class="slide slide-agentic-intro slide-diagram-left">
     <div class="grid-two">
       <div class="stack">
         <div class="kicker reveal">Then harness arrived</div>
@@ -1012,7 +1025,7 @@ body.is-presenting .deck-controls { top: 18px; }
     <div class="question-mark">?</div>
   </section>
 
-  <section class="slide">
+  <section class="slide slide-diagram-left">
     <div class="grid-two">
       <div class="stack">
         <div class="kicker reveal">The Engineering Harness</div>

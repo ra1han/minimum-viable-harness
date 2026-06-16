@@ -1235,6 +1235,11 @@ let active = 0;
 let presentationMode = false;
 let hintTimer = window.setTimeout(() => hints.classList.add('faded'), 4200);
 
+function getShortSlideTitle(text) {
+  const words = text.trim().split(/\s+/);
+  return words.length > 5 ? `${words.slice(0, 5).join(' ')} ...` : text.trim();
+}
+
 slides.forEach((slide, index) => {
   slide.id = slide.id || `slide-${String(index + 1).padStart(2, '0')}`;
 
@@ -1248,7 +1253,7 @@ slides.forEach((slide, index) => {
   const option = document.createElement('option');
   const heading = slide.querySelector('h1, h2, .quote');
   option.value = String(index);
-  option.textContent = `${String(index + 1).padStart(2, '0')} - ${heading ? heading.textContent.trim() : 'Slide'}`;
+  option.textContent = `${String(index + 1).padStart(2, '0')} - ${getShortSlideTitle(heading ? heading.textContent : 'Slide')}`;
   slidePicker.appendChild(option);
 });
 

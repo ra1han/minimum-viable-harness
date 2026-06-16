@@ -174,6 +174,53 @@ strong { color: var(--ink); }
 .compact-card-grid .card h3 { font-size: clamp(18px, 2.15vw, 26px); }
 .compact-card-grid .card p { font-size: clamp(14px, 1.25vw, 18px); line-height: 1.25; }
 
+.component-demo {
+  display: grid;
+  gap: 12px;
+}
+.component-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  min-height: 118px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-left: 6px solid var(--step-accent);
+  border-radius: 16px;
+  box-shadow: 0 16px 38px rgba(36, 29, 24, 0.09);
+}
+.component-step.gate { --step-accent: var(--terracotta); }
+.component-step.sensor { --step-accent: var(--sage); }
+.component-step.backpressure { --step-accent: var(--ochre); }
+.component-step .label { color: var(--step-accent); }
+.component-step h3 { font-size: clamp(18px, 2vw, 26px); }
+.component-step p { margin-top: 6px; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.22; }
+.component-icon {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--step-accent);
+  border-radius: 14px;
+  color: var(--step-accent);
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 800;
+  background: color-mix(in srgb, var(--surface) 78%, var(--step-accent) 22%);
+}
+.component-result {
+  padding: 12px 16px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-strong) 70%, transparent 30%);
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 1vw, 14px);
+  color: var(--ink-dim);
+}
+
 .code-stack {
   display: grid;
   gap: 14px;
@@ -882,6 +929,8 @@ body.is-presenting .deck-controls { top: 18px; }
   .primitive svg { width: min(22vw, 86px); height: min(22vw, 86px); }
   .primitive h3 { font-size: clamp(13px, 3.8vw, 17px); }
   .primitive p { max-width: 18ch; font-size: clamp(10px, 2.7vw, 12px); line-height: 1.12; }
+  .component-step { grid-template-columns: 58px minmax(0, 1fr); min-height: 104px; padding: 13px 14px; gap: 11px; }
+  .component-icon { width: 52px; height: 52px; border-radius: 12px; font-size: 18px; }
   .layer:nth-child(n) { transform: none; }
   .traditional-stack {
     min-height: 300px;
@@ -1132,14 +1181,24 @@ body.is-presenting .deck-controls { top: 18px; }
     <div class="grid-two">
       <div class="stack">
         <div class="kicker reveal">Real-world scenario</div>
-        <h2 class="reveal">A tiny schema change can still break production.</h2>
+        <h2 class="reveal">A tiny schema change can still break production</h2>
         <p class="reveal">The task: add a new <strong>phone_number</strong> column to an existing PostgreSQL database and expose it through a FastAPI backend.</p>
-        <p class="reveal">The mistake: the agent updates the database files, but forgets a default value for existing rows.</p>
+        <p class="reveal">The mistake: the agent writes a non-null migration without a default for existing rows.</p>
       </div>
-      <div class="card-grid compact-card-grid">
-        <article class="card accent-a reveal"><div class="label">Gate</div><h3>Commit attempt</h3><p>A lifecycle rule intercepts the agent before the risky change can move forward.</p></article>
-        <article class="card accent-b reveal"><div class="label">Sensor</div><h3>Migration dry-run</h3><p><strong>alembic check</strong> proves whether existing rows can survive the schema change.</p></article>
-        <article class="card accent-c reveal"><div class="label">Backpressure</div><h3>Hard stop</h3><p>The failed check aborts the action and pushes the exact error into the next context window.</p></article>
+      <div class="component-demo reveal" aria-label="Gate, sensor, and backpressure demonstration">
+        <article class="component-step gate">
+          <div class="component-icon">01</div>
+          <div><div class="label">Gate</div><h3>Intercept the commit attempt</h3><p>A lifecycle rule intercepts the agent before the risky change can move forward.</p></div>
+        </article>
+        <article class="component-step sensor">
+          <div class="component-icon">02</div>
+          <div><div class="label">Sensor</div><h3>Migration dry-run</h3><p><strong>alembic check</strong> and a migration dry-run test existing rows against the new schema.</p></div>
+        </article>
+        <article class="component-step backpressure">
+          <div class="component-icon">03</div>
+          <div><div class="label">Backpressure</div><h3>Stop, then steer repair</h3><p>The failed proof blocks progress and returns the exact migration error to the agent's context window.</p></div>
+        </article>
+        <div class="component-result">Result: add a default or nullable phase, rerun proof, continue only after the gate clears.</div>
       </div>
     </div>
   </section>

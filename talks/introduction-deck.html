@@ -26,6 +26,8 @@
   --ochre-dim: rgba(181, 118, 20, 0.14);
   --cranberry: #9f2d48;
   --cranberry-dim: rgba(159, 45, 72, 0.12);
+  --closing-bg: #241d18;
+  --closing-ink: #fffaf2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,6 +47,8 @@
     --ochre-dim: rgba(224, 185, 95, 0.14);
     --cranberry: #e17b93;
     --cranberry-dim: rgba(225, 123, 147, 0.14);
+    --closing-bg: #0f0d0b;
+    --closing-ink: #f7efe4;
   }
 }
 
@@ -306,6 +310,174 @@ strong { color: var(--ink); }
   color: var(--ink-dim);
   line-height: 1.2;
 }
+
+.slide-cover {
+  align-items: stretch;
+  background:
+    linear-gradient(90deg, transparent 0 68%, var(--terracotta-dim) 68% 100%),
+    var(--bg);
+}
+.cover-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+  gap: clamp(36px, 7vw, 110px);
+  align-items: center;
+  width: 100%;
+}
+.cover-copy { display: grid; gap: clamp(22px, 3.5vh, 38px); }
+.cover-copy h1 { max-width: 9ch; }
+.cover-copy h1 span { display: block; color: var(--terracotta); }
+.cover-subtitle {
+  max-width: 650px;
+  padding-left: 18px;
+  border-left: 4px solid var(--sage);
+}
+.cover-rail {
+  display: grid;
+  align-content: center;
+  gap: 0;
+  min-height: min(62vh, 560px);
+}
+.cover-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 16px;
+  align-items: center;
+  min-height: 92px;
+  color: var(--ink-dim);
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.2vw, 16px);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.cover-step::before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-strong);
+  z-index: -1;
+}
+.cover-step:first-child::before { top: 50%; }
+.cover-step:last-child::before { bottom: 50%; }
+.cover-node {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--terracotta);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--terracotta);
+  font-size: 11px;
+  font-weight: 800;
+}
+.cover-step:nth-child(2) .cover-node { border-color: var(--ochre); color: var(--ochre); }
+.cover-step:nth-child(3) .cover-node { border-color: var(--sage); color: var(--sage); }
+.cover-step:nth-child(4) .cover-node { border-color: var(--cranberry); color: var(--cranberry); }
+.slide-cover .speaker-bio {
+  position: static;
+  justify-self: start;
+  width: fit-content;
+  padding: 12px 18px 12px 12px;
+}
+.slide-cover .speaker-bio img { width: 56px; height: 56px; }
+
+.codebase-duality {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 5vw, 72px);
+  margin-top: clamp(28px, 5vh, 54px);
+}
+.codebase-type {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  min-height: min(42vh, 380px);
+  padding: clamp(24px, 3.4vw, 46px) 0 0;
+  border-top: 7px solid var(--type-accent);
+}
+.codebase-type.legacy { --type-accent: var(--terracotta); }
+.codebase-type.greenfield { --type-accent: var(--sage); }
+.codebase-type .type-index {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  color: var(--type-accent);
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 1.2vw, 16px);
+}
+.codebase-type h3 {
+  max-width: 9ch;
+  color: var(--ink);
+  font-size: clamp(38px, 5.4vw, 68px);
+  line-height: 0.96;
+}
+.codebase-type h3 span { display: block; color: var(--type-accent); }
+.codebase-type p { max-width: 26ch; }
+.codebase-type .type-name {
+  color: var(--type-accent);
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.4vw, 18px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.slide-closing {
+  background:
+    linear-gradient(110deg, var(--closing-bg) 0 56%, color-mix(in srgb, var(--closing-bg) 88%, var(--terracotta) 12%) 56% 100%);
+  color: var(--closing-ink);
+}
+.slide-closing::before { border-color: rgba(255, 250, 242, 0.18); }
+.closing-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  gap: clamp(42px, 8vw, 120px);
+  align-items: center;
+  width: 100%;
+}
+.closing-copy { display: grid; gap: clamp(20px, 3vh, 34px); }
+.closing-copy .kicker { color: var(--ochre); }
+.closing-copy h2 {
+  max-width: 11ch;
+  color: var(--closing-ink);
+  font-size: clamp(48px, 8vw, 98px);
+}
+.closing-copy h2 span { color: var(--terracotta); }
+.closing-copy p { max-width: 720px; color: color-mix(in srgb, var(--closing-ink) 72%, transparent 28%); }
+.closing-proof {
+  display: grid;
+  border-top: 1px solid rgba(255, 250, 242, 0.24);
+}
+.closing-proof-item {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 16px;
+  align-items: center;
+  min-height: 84px;
+  border-bottom: 1px solid rgba(255, 250, 242, 0.24);
+}
+.closing-proof-item .mono { color: var(--terracotta); font-size: 12px; }
+.closing-proof-item strong { color: var(--closing-ink); font-size: clamp(18px, 2vw, 26px); }
+.closing-signoff {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+.closing-signoff img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--terracotta);
+}
+.closing-signoff .speaker-name { color: var(--closing-ink); }
+.closing-signoff .speaker-title { color: color-mix(in srgb, var(--closing-ink) 64%, transparent 36%); }
 
 .layered-model {
   display: grid;
@@ -942,6 +1114,40 @@ strong { color: var(--ink); }
 .slide-complexity h2 { font-size: clamp(30px, 4.7vw, 58px); }
 .slide-complexity p { font-size: clamp(15px, 1.45vw, 20px); }
 
+.starting-point-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(420px, 1.2fr);
+  gap: clamp(40px, 8vw, 120px);
+  align-items: center;
+  width: 100%;
+}
+.starting-point-copy { display: grid; gap: clamp(18px, 3vh, 30px); }
+.starting-point-copy p { max-width: 30ch; }
+.readiness-list {
+  display: grid;
+  border-top: 1px solid var(--border-strong);
+}
+.readiness-item {
+  display: grid;
+  grid-template-columns: 48px minmax(150px, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(12px, 2vw, 24px);
+  align-items: center;
+  min-height: clamp(76px, 10vh, 96px);
+  border-bottom: 1px solid var(--border-strong);
+}
+.readiness-item .mono {
+  color: var(--item-accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+.readiness-item:nth-child(1) { --item-accent: var(--terracotta); }
+.readiness-item:nth-child(2) { --item-accent: var(--ochre); }
+.readiness-item:nth-child(3) { --item-accent: var(--sage); }
+.readiness-item:nth-child(4) { --item-accent: var(--cranberry); }
+.readiness-item:nth-child(5) { --item-accent: var(--terracotta); }
+.readiness-item h3 { color: var(--ink); font-size: clamp(17px, 1.7vw, 23px); }
+.readiness-item p { font-size: clamp(13px, 1.15vw, 17px); line-height: 1.25; }
+
 .deck-progress {
   position: fixed;
   top: 0;
@@ -1160,6 +1366,13 @@ body.is-presenting .deck-controls { top: 18px; }
   .slide-complexity .interface-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
   .slide-complexity .interface-command { min-height: 33px; padding: 6px; border-radius: 9px; font-size: 9px; }
   .slide-complexity .interface-note { display: none; }
+  .starting-point-layout { grid-template-columns: 1fr; gap: 22px; }
+  .starting-point-copy { gap: 12px; }
+  .starting-point-copy h2 { max-width: 18ch; font-size: clamp(30px, 8.5vw, 42px); }
+  .starting-point-copy p { max-width: none; font-size: 15px; }
+  .readiness-item { grid-template-columns: 30px minmax(0, 1fr); min-height: 62px; gap: 8px 10px; padding: 8px 0; }
+  .readiness-item h3 { font-size: 16px; }
+  .readiness-item p { grid-column: 2; font-size: 12px; line-height: 1.18; }
   .deck-dots { display: none; }
   .deck-controls {
     left: 12px;
@@ -1176,6 +1389,29 @@ body.is-presenting .deck-controls { top: 18px; }
   .loop-ring, .loop-center { display: none; }
   .loop-item { position: static; width: auto; transform: none !important; }
   .deck-hints { display: none; }
+  .slide-cover { background: var(--bg); }
+  .cover-layout, .closing-layout { grid-template-columns: 1fr; gap: 24px; }
+  .cover-copy { gap: 16px; }
+  .cover-copy h1 { font-size: clamp(50px, 15vw, 78px); }
+  .cover-subtitle { font-size: 17px; }
+  .cover-rail { grid-template-columns: repeat(4, minmax(0, 1fr)); min-height: 0; }
+  .cover-step { grid-template-columns: 1fr; justify-items: center; min-height: 70px; gap: 8px; font-size: 9px; text-align: center; }
+  .cover-step::before { left: 0; right: 0; top: 17px !important; bottom: auto !important; width: auto; height: 2px; }
+  .cover-step:first-child::before { left: 50%; }
+  .cover-step:last-child::before { right: 50%; }
+  .slide-cover .speaker-bio { padding: 8px 12px 8px 8px; }
+  .slide-cover .speaker-bio img { width: 44px; height: 44px; }
+  .codebase-duality { grid-template-columns: 1fr; gap: 22px; margin-top: 22px; }
+  .codebase-type { min-height: 210px; padding-top: 20px; border-top-width: 5px; }
+  .codebase-type h3 { font-size: clamp(34px, 10vw, 48px); }
+  .codebase-type p { font-size: 15px; }
+  .codebase-type .type-index { top: 14px; }
+  .slide-closing { background: var(--closing-bg); }
+  .closing-copy { gap: 14px; }
+  .closing-copy h2 { font-size: clamp(40px, 12vw, 64px); }
+  .closing-copy p { font-size: 16px; }
+  .closing-proof-item { min-height: 54px; grid-template-columns: 34px 1fr; }
+  .closing-proof-item strong { font-size: 17px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1195,22 +1431,52 @@ body.is-presenting .deck-controls { top: 18px; }
   <button class="control-button control-button--primary" id="presentDeck" type="button" aria-label="Enter presentation mode">Present</button>
   <button class="control-button" id="nextSlide" type="button" aria-label="Go to next slide">Next</button>
 </div>
-<div class="deck-counter" aria-live="polite">01 / 13</div>
+<div class="deck-counter" aria-live="polite">01 / 15</div>
 <div class="deck-hints">Use controls, arrow keys, wheel, or swipe. Press F for presentation mode.</div>
 
 <main class="deck" id="deck">
-  <section class="slide slide-title">
-    <div class="stack">
-      <div class="kicker reveal">HARNESS ENGINEERING</div>
-      <h1 class="reveal">Minimum Viable Harness</h1>
-      <p class="reveal" style="max-width: 760px;">Making development environment agent-ready.</p>
+  <section class="slide slide-title slide-cover">
+    <div class="cover-layout">
+      <div class="cover-copy">
+        <div class="kicker reveal">Harness Engineering / Legacy Systems</div>
+        <h1 class="reveal">Minimum <span>Viable Harness</span></h1>
+        <p class="cover-subtitle reveal">Making legacy codebases agent-ready, without asking the model to guess its way to production.</p>
+        <div class="speaker-bio reveal">
+          <img src="../images/me.jpg" alt="Raihan Alam">
+          <div class="speaker-info">
+            <div class="speaker-name">Raihan Alam</div>
+            <div class="speaker-title">Principal Software Engineer, Microsoft</div>
+          </div>
+        </div>
+      </div>
+      <div class="cover-rail reveal" aria-label="The agent development loop: understand, run, prove, and learn">
+        <div class="cover-step"><span class="cover-node">01</span><strong>Understand</strong></div>
+        <div class="cover-step"><span class="cover-node">02</span><strong>Run</strong></div>
+        <div class="cover-step"><span class="cover-node">03</span><strong>Prove</strong></div>
+        <div class="cover-step"><span class="cover-node">04</span><strong>Learn</strong></div>
+      </div>
     </div>
-    <div class="big-number">01</div>
-    <div class="speaker-bio reveal">
-      <img src="../images/me.jpg" alt="Raihan Alam">
-      <div class="speaker-info">
-        <div class="speaker-name">Raihan Alam</div>
-        <div class="speaker-title">Principal Software Engineer, Microsoft</div>
+  </section>
+
+  <section class="slide slide-codebase-types">
+    <div class="stack">
+      <div class="kicker reveal">A useful simplification</div>
+      <h2 class="reveal" style="max-width: 14ch;">Only two types of codebase</h2>
+      <div class="codebase-duality reveal">
+        <article class="codebase-type legacy">
+          <span class="type-index">01</span>
+          <h3>Makes <span>money.</span></h3>
+          <div class="stack tight">
+            <div class="type-name">Legacy codebase</div>
+          </div>
+        </article>
+        <article class="codebase-type greenfield">
+          <span class="type-index">02</span>
+          <h3>Doesn't <span>yet.</span></h3>
+          <div class="stack tight">
+            <div class="type-name">Greenfield codebase</div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1513,11 +1779,63 @@ Fix the code syntax to clear the gate before retrying.</pre>
     </div>
   </section>
 
-  <section class="slide">
-    <div class="stack">
-      <div class="kicker reveal">Close</div>
-      <h2 class="reveal" style="max-width: 17ch;">A harness is the difference between a clever model and a dependable teammate.</h2>
-      <p class="reveal" style="max-width: 820px;">The minimum bar: the agent can understand the repo, run the app, verify its work, and improve the path for whoever comes next.</p>
+  <section class="slide slide-compact slide-legacy-starting-point">
+    <div class="starting-point-layout">
+      <div class="starting-point-copy">
+        <div class="kicker reveal">Start here, then improve</div>
+        <h2 class="reveal">A good starting point for a legacy codebase</h2>
+        <p class="reveal">Give the agent safe access, clear interfaces, and a short path from intent to evidence.</p>
+      </div>
+      <div class="readiness-list reveal" aria-label="Five starting capabilities for an agent-ready legacy codebase">
+        <article class="readiness-item">
+          <span class="mono">01</span>
+          <h3>Safe execution</h3>
+          <p>Full CLI access inside an isolated environment, such as a dev container.</p>
+        </article>
+        <article class="readiness-item">
+          <span class="mono">02</span>
+          <h3>First-class system interfaces</h3>
+          <p>Skills, MCP tools, or CLI commands for every architectural component.</p>
+        </article>
+        <article class="readiness-item">
+          <span class="mono">03</span>
+          <h3>Intent-level interfaces</h3>
+          <p>Project verbs such as <strong>verify-api</strong>, <strong>verify-ui</strong>, and <strong>proof</strong>.</p>
+        </article>
+        <article class="readiness-item">
+          <span class="mono">04</span>
+          <h3>Production visibility</h3>
+          <p>Read-only access to logs, traces, metrics, and deployment history.</p>
+        </article>
+        <article class="readiness-item">
+          <span class="mono">05</span>
+          <h3>Feedback loop</h3>
+          <p>Turn repeated failures and successful workflows into harness improvements.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-closing">
+    <div class="closing-layout">
+      <div class="closing-copy">
+        <div class="kicker reveal">The minimum viable standard</div>
+        <h2 class="reveal">Move fast. <span>Bring proof.</span></h2>
+        <p class="reveal">A harness turns a clever model into a dependable engineering teammate by making the path from intent to evidence explicit.</p>
+        <div class="closing-signoff reveal">
+          <img src="../images/me.jpg" alt="Raihan Alam">
+          <div class="speaker-info">
+            <div class="speaker-name">Raihan Alam</div>
+            <div class="speaker-title">Questions?</div>
+          </div>
+        </div>
+      </div>
+      <div class="closing-proof reveal" aria-label="Minimum capabilities of an agent-ready codebase">
+        <div class="closing-proof-item"><span class="mono">01</span><strong>Understand the repo</strong></div>
+        <div class="closing-proof-item"><span class="mono">02</span><strong>Run the system</strong></div>
+        <div class="closing-proof-item"><span class="mono">03</span><strong>Verify the work</strong></div>
+        <div class="closing-proof-item"><span class="mono">04</span><strong>Improve the next run</strong></div>
+      </div>
     </div>
   </section>
 </main>

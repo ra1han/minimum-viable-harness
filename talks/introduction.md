@@ -1,6 +1,14 @@
 # Minimum Viable Harness
 
-Making development environment agent-ready.
+Making legacy codebase agent-ready.
+
+# Only two types of codebase
+
+There are only two kinds of codebases -
+
+- Which makes money - AKA legacy codebase
+
+- Which doesn't make money - AKA greenfield codebase
 
 # We started from here
 
@@ -262,3 +270,11 @@ A good harness abstracts that spread and gives the agent simple interfaces to in
 - `proof`
 
 The agent should work through intent-level handles while the harness owns setup, state, services, and proof.
+
+# A good starting point for legacy codebase
+
+- **Safe execution:** Give agents full CLI access inside an isolated environment, such as a dev container.
+- **First-Class System Interfaces:** Expose first-class skills, MCP tools, or CLI commands for GitHub/Azure DevOps, Application Insights, Entra ID, databases, and other architectural components.
+- **Intent-level interfaces:** Provide focused commands for projet specific verbs such as `verify-api`, `verify-ui`, and `proof` instead of requiring agents to discover the test strategy.
+- **Production visibility:** Give agents read-only access to logs, traces, metrics, and deployment history.
+- **Feedback loop:** Capture repeated failures and successful workflows as improvements to the harness.
